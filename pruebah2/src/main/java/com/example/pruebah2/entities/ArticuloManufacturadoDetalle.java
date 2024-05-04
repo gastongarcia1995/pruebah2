@@ -14,7 +14,7 @@ import lombok.*;
 public class ArticuloManufacturadoDetalle extends Base {
     private Double cantidad;
 
-
+    @ManyToOne
     @JoinColumn(name = "articuloInsumo_id")
     private ArticuloInsumo articuloInsumo;
 }
