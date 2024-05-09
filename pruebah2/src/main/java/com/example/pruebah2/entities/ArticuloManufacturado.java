@@ -22,7 +22,8 @@ public class ArticuloManufacturado extends Articulo{
     private String preparacion;
 
 
-    @OneToMany(mappedBy = "articuloInsumo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name= "articuloManufacturado_id")
     @Builder.Default
     private final List<ArticuloManufacturadoDetalle> detalles = new ArrayList();
 //final para asegura que, una vez que la lista se haya inicializado en el constructor (o en la misma línea de declaración), no se podrá asignar una nueva instancia de lista a la variable detalles.

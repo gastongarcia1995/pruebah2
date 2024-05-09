@@ -18,15 +18,15 @@ public class Categoria extends Base{
 
     private String denominacion;
 
-    @ManyToMany(mappedBy = "categorias")
+    @ManyToMany(mappedBy = "categorias",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private  List<Sucursal> sucursales = new ArrayList();
 
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY ,orphanRemoval = true, mappedBy = "categoria")
-    @JoinColumn(name = "categoria_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "categoria")
     @Builder.Default
-    private  List<Articulo> articulos = new ArrayList();
+    private List<Articulo> articulos = new ArrayList<>();
+
 
 
     @ManyToOne

@@ -12,41 +12,12 @@ import java.util.Optional;
 
 
 @Service
-public class PedidoService {
+public class PedidoService extends BaseService<Pedido, Long, PedidoRepository> {
 
-@Autowired
-private PedidoRepository pedidoRepository;
-
-
-
-    public List<Pedido> findAll1() {
-        return pedidoRepository.findAll();
+    @Autowired
+    public PedidoService(PedidoRepository repository) {
+        super(repository);
     }
-
-    public Optional<Pedido> findById1(Long id) {
-        return pedidoRepository.findById(id);
-    }
-
-    @Transactional
-    public boolean delete1(Long id) {
-        if (pedidoRepository.existsById(id)) {
-            pedidoRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public Pedido insert1(Pedido pedido) {
-        return pedidoRepository.save(pedido);
-    }
-
-    public Pedido update1(Pedido pedido, Long id) {
-        pedido.setId(id);
-        return pedidoRepository.save(pedido);
-    }
-
-
 }
 
 

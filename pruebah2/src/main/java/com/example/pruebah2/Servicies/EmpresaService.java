@@ -11,46 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmpresaService {
-
-
-
+public class EmpresaService extends BaseService<Empresa, Long, EmpresaRepository> {
 
     @Autowired
-    private EmpresaRepository empresaRepository ;
-
-
-    public List<Empresa> findall(){
-        return this.empresaRepository.findAll();
+    public EmpresaService(EmpresaRepository repository) {
+        super(repository);
     }
-
-
-    public Optional<Empresa> findallbyId(Long id){
-        return this.empresaRepository.findById(id);
-    }
-
-
-
-    @Transactional
-    public boolean delete(Long id){
-        if(this.empresaRepository.existsById(id)){
-
-            this.empresaRepository.deleteById(id);
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-
-    public Empresa insert(Empresa empresa) {
-        return this.empresaRepository.save(empresa);
-    }
-
-    public Empresa update(Empresa empresa, Long id) {
-        empresa.setId(id);
-        return this.empresaRepository.save(empresa);
-    }
-
 }
